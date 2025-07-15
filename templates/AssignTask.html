@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<head>
+    <title>Admin page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/fontawsom-all.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/animate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+    <script th:src="@{/assets/js/jquery-3.2.1.min.js}"></script>
+    <!--        <script src="assets/js/popper.min.js"></script>-->
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/plugins/scroll-nav/js/scrolling-nav.js}"></script>
+    <script th:src="@{/assets/js/script.js}"></script>
+<style>    
+    .Container-fluid {
+	width: 75%;
+	height: auto;
+	background-color: rgba(0, 0, 0, 0.7);
+	margin-top: 50px;
+	margin-left: 200px;
+	border-radius: 10px;
+}
+
+.custom-button {
+	background-color: #8b6508; /* Background color */
+	color: #131f34; /* Text color */
+	border: 2px solid #8b6508; /* Border color */
+	padding: 10px 20px; /* Padding */
+	border-radius: 10px; /* Rounded corners */
+	font-size: 16px; /* Font size */
+	cursor: pointer; /* Pointer cursor on hover */
+	transition: background-color 0.3s, border-color 0.3s;
+	width: 50%; /* Smooth transition */
+	margin-left: 25%;
+}
+
+.custom-button:hover {
+	background-color: #131f34; /* Darker background color on hover */
+	border-color: #8b6508;
+	color: #8b6508;
+	border: 2px solid #131f34;
+}
+</style>
+</head>
+
+<body th:style="'background-image: url(' + @{/assets/images/backgroun-login.jpeg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;'">
+    <header id="menu-jk">
+
+        <div id="nav-head" class="header-nav" style="background-color: #131f34 ;">
+        <div class="row">
+        
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3  col-sm-12"
+                         style="color: #8b6508;font-weight:bold; font-size:42px;">  <img th:src="@{/assets/images/logo1.jpeg}" alt="Avatar Logo" style="width: 160px; height: 80px;  "
+					></div>
+                    <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                        
+
+                    </div>
+
+                    <div class="col-sm-2 d-none d-lg-block appoint">
+                    
+
+                        <a class="btn btn-success" href="/EventManagement/logout">Logout</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+    
+    
+    
+    
+    
+    
+    
+    <div class="Container-fluid">
+		<form method="POST" id="enquiry" action="assign">
+			<div class="row">
+			<div class="col-12">
+			<h2 class="mt-3 " style="margin-left: 350px;"><b>Assign Task's</b></h2>
+			</div>
+				<div class="col-6">
+					<div class="Container mt-3 ms-3">
+
+
+						<div class="mb-3">
+    						<label for="username" class="form-label mb-0 ms-1 ml-4" style="color: #8b6508;">
+        					<h5><b>Catering And Hospitality</b></h5>
+    						</label>
+    						<select class="form-control rounded-5 ml-4" id="username" name="CateringAndHospitality" style="width: 87%;" required>
+        						<option value="" disabled selected>Select Catering And Hospitality</option>
+        						
+        							<option th:each="name : ${a}" th:value="${name.aId}" th:text="${name.aName}" th:if="${name.aCategory == 'CateringAndHospitality'}"></option>
+        						
+    						</select>
+						</div>
+						
+						
+						
+						
+						<div class="mb-3 mt-5">
+    						<label for="username" class="form-label mb-0 ms-1 ml-4" style="color: #8b6508;">
+        					<h5><b>Entertainment And Activities</b></h5>
+    						</label>
+    						<select class="form-control rounded-5 ml-4" id="username" name="EntertainmentAndActivities" style="width: 87%;" required>
+        						<option value="" disabled selected>Select Entertainment And Activities</option>
+        						
+        							<option th:each="name : ${a}" th:value="${name.aId}" th:text="${name.aName}" th:if="${name.aCategory == 'EntertainmentAndActivities'}"></option>
+        						
+    						</select>
+						</div>
+						
+						</div>
+						</div>
+						
+						<div class="col-6">
+					<div class="Container mt-3 ms-3">
+						<div class="">
+    						<label for="username" class="form-label mb-0 ms-1 ml-4 mr-3" style="color: #8b6508;">
+        					<h5><b>Venue Management</b></h5>
+    						</label>
+    						<select class="form-control rounded-5 ml-4" id="username" name="VenueManagement" style="width: 87%;" required>
+        						<option value="" disabled selected>Select Venue Management</option>
+        						
+        							<option th:each="name : ${a}" th:value="${name.aId}" th:text="${name.aName}" th:if="${name.aCategory == 'VenueManagement'}"></option>
+        						
+    						</select>
+						</div>
+						
+						
+						
+						<div class="mb-3 mt-5">
+    						<label for="username" class="form-label mb-0 ms-1 ml-4" style="color: #8b6508;">
+        					<h5><b>Logistics And Operations</b></h5>
+    						</label>
+    						<select class="form-control rounded-5 ml-4" id="username" name="LogisticsAndOperations" style="width: 87%;" required>
+        						<option value="" disabled selected>Select Logistics And Operations</option>
+        						
+        							<option th:each="name : ${a}" th:value="${name.aId}" th:text="${name.aName}" th:if="${name.aCategory == 'LogisticsAndOperations'}"></option>
+        						
+    						</select>
+						</div>
+
+						<input type="hidden" name="bId" th:value="${f.id}">
+						<input type="hidden" name="eName" th:value="${f.eventName}">
+						<input type="hidden" name="eDate" th:value="${f.date}">
+						<input type="hidden" name="eTime" th:value="${f.time}">
+						<input type="hidden" name="eAddress" th:value="${f.address}">
+
+
+
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<button type="submit" class="custom-button mb-4 mt-3 w-80"
+						name="enquiry">
+						<b>Submit</b>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>

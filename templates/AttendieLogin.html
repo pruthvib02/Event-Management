@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <title>Attendie Login</title>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <link
+        href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
+        rel="stylesheet" type="text/css" />
+    <!-- Styling-->
+    <link rel="stylesheet" th:href="@{/sms/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/sms/vendor/fontawesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="/sms/kushi/assets/css/styles.css">
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+    <script>
+        jQuery.validator.addMethod("checkemail", function (value, element) {
+            return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
+        });
+        jQuery(document).ready(function ($) {
+            $("#login").validate({
+                rules: {
+                    userEmail: {
+                        required: true,
+                        checkemail: true
+                    },
+                    userPassword: {
+                        required: true,
+                        minlength: 6
+                    },
+                },
+                messages: {
+                    userEmail: {
+                        required: "Please enter the email.",
+                        checkemail: "Please enter a valid email address.",
+                    },
+                    userPassword: {
+                        required: "Please enter the password.",
+                        minlength: "Please enter the password greater than or equal to 6.",
+                    },
+                }
+            })
+        })
+         // ajax for existing mail only can login..
+        $(document).ready(function () {
+            $('#userEmail').keyup(function () {
+                var useremail = $(this).val();
+                $.ajax({
+                    url: '/EventManagement/checkEmailofAttendie',
+                    type: 'GET',
+                    data: { useremail: useremail },
+                    success: function (response) {
+                        if (response === true) {
+                            $('#codeError').text('Hi welcome back').css('color', 'rgb(27, 165, 27)');
+                        } else {
+                            $('#codeError').text('No such email exist ').css('color', 'red');
+                        }
+                    },
+                    error: function () {
+                        $('#codeError').text('Error occurred while checking code');
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .button {
+            padding: 5px;
+            width: 6%;
+            background: cornflowerblue;
+            color: white;
+        }
+
+        #msg {
+            color: black;
+            width: 24%;
+            font-weight: bold;
+            font-size: 25px;
+            padding: 5px;
+        }
+
+        td input {
+            display: block;
+        }
+    </style>
+</head>
+
+<body th:style="'background-image: url(' + @{/assets/images/backgroun-login.jpeg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;'"
+class="login" style="padding: 80px 0;">
+    <header id="menu-jk">
+        <div id="nav-head" class="header-nav" style="background-color: #131f34 ; margin-top:0px;">
+            <div class="row">
+                <div class="col-8"><a href="app"><img th:src="@{/assets/images/logo1.jpeg}" alt="Avatar Logo" style="width: 160px; height: 80px; padding-left:10px;"></a></div>
+                <div class="col-2"><a href="loginpage"><span class="text-bold text-uppercase"><button style="margin-left: 20px;">User's Login</button></span></a></div>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+        <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            <div class="logo margin-top-30"></div>
+            <br><br><br><br>
+            <center>
+                <h2 style="color: gold;"><a href="app">Attendie's</a> Login</h2>
+            </center>
+            <div class="box-login" style="background-color:#D3F1DF">
+                <form class="form-login" action="AttendieLogin" id="login" method="post">
+                    <center>
+                        <div class="card-footer bg-info text-white" th:if="${message != null}">
+                            [[${message}]]
+                        </div>
+                        <H1 style="color:BROWN"> SIGN IN</H1>
+                    </center>
+                    <span style="color:red;"></span>
+                    <div class="form-group">
+                        <span class="input-icon">
+                            <input type="text" class="form-control" id="userEmail" name="email" placeholder="Email">
+                            <i class="fa fa-user"></i> 
+                        </span>
+                    </div>
+                    <h4>
+                        <div id="codeError"></div>
+                    </h4>
+                    <div class="form-group form-actions">
+                        <span class="input-icon">
+                            <input type="password" class="form-control password" name="password" placeholder="Password">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary pull-right" value="Login" name="login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <section id="footer" class="float-start">
+        <footer class="ng text-white pt-5 pb-4" style="background-color: #131f34;">
+            <div class="container text-center text-md-start">
+                <div class="row text-center text-md-start">
+                    <br><br>
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Elite Iris</h5>
+                        <p>Expertly managing events with precision, creativity, and a seamless experience from concept to execution.</p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Products</h5>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">TheProviders</a></p>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">Creativity</a></p>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">SourceFiles</a></p>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Useful Links</h5>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">Your Account</a></p>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">Become an Affiliate</a></p>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">Shipping Rates</a></p>
+                        <p><a href="#" class="text-decoration-none" id="footer-hover">Help</a></p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Contact</h5>
+                        <p><i class="fas fa-home me-3"></i> Vijaynagar, Bangalore</p>
+                        <p><i class="fas fa-envelope me-3"></i> eliteiris@gmail.com</p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                </div>
+                <hr class="my-3">
+                <div class="row align-items-center">
+                    <div class="col-md-7 col-lg-8">
+                        <p>© 2024 Copyright:
+                            <a href="https://eliteiris.com/" class="text-decoration-none" style="color: #8b6508;">Elite Iris</a>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-lg-4 text-center text-md-end">
+                        <a href="#" class="text-decoration-none" id="footer-hover">Facebook</a>
+                        <a href="#" class="text-decoration-none" id="footer-hover">Twitter</a>
+                        <a href="#" class="text-decoration-none" id="footer-hover">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</body>
+</html>

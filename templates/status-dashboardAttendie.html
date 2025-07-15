@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendie Status Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <h1>Attendie Task Status Dashboard</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Task ID</th>
+                <th>Task Name</th>
+                <th>Task Status</th>
+                <th>Update Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through each task and display it -->
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.tId}"></td>  <!-- Display Task ID -->
+                <td th:text="${task.taskName}"></td>  <!-- Display Task Name -->
+                <td th:text="${task.status ? 'Completed' : 'Pending'}"></td> <!-- Display Status -->
+                <td>
+               <---! "/updateStatus/{attendieID}/task/{taskID}/status"-->
+                    <form th:action="@{/EventManagement/updateStatus/{attendieId}/task/{taskId}/status(attendieId=${attendie.aId}, taskId=${task.tId})}" method="post">
+                        <input type="hidden" name="status" value="true"> <!-- Set status dynamically -->
+                        <button type="submit">Mark as Completed</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

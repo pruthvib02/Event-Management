@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <title>Home page</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+ <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input-icon input {
+            padding-left: 40px;
+        }
+
+        .input-icon i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .form-actions {
+            margin-top: 20px;
+        }
+
+        .form-control {
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-size: 18px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .fieldset {
+            border: 2px solid #007bff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        legend {
+            font-size: 30px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-control {
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+
+<body  th:style="'background-image: url(' + @{/assets/images/backgroun-login.jpeg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;'">
+
+
+    <header id="menu-jk">
+
+        <div id="nav-head" class="header-nav" style="background-color: #131f34 ; margin-top:0px;" >
+                    
+                <div class="row">
+                 
+        
+        <img th:src="@{/assets/images/logo1.jpeg}" alt="Avatar Logo" style="width: 160px; height: 80px;  padding-left:10px; ">
+            <div class="container">
+            
+                <div class="row">
+                 
+					
+                 
+                    <div id="menu" class="col-lg-8  d-none d-md-block nav-item">
+                        <ul>
+                            <li><a href="#" onMouseOver="this.style.color = '#00ab9f'"
+                                    onMouseOut="this.style.color = 'black'"></a>
+                                <h2> Welcome
+                                    <span style="color: #00ab9f;">[[${uname}]] </span> only u  can delete the event
+                                </h2>
+                                
+                            </li>
+
+                  
+                        </ul>
+
+                  
+
+                        
+                    </div>
+                          
+
+                </div>
+</div>
+            </div>
+            
+        </div>
+    </header>
+    <!-- <jsp:include page="SecondaryNavbar.jsp" />   -->
+    <!-- Seconary navabr starts here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  >
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- <center>[[${message}]] </center> -->
+            <ul class="navbar-nav ml-auto"  style="background-color: orange;">
+                <li class="nav-item">
+                    <a class="nav-link" href="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Events/booking">Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">/</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+                        style="border-radius: 20px">
+                        <a class="dropdown-item" href="#" id="name">Name: </a>
+                        <a class="dropdown-item" href="#" id="phone">Phone: </a>
+                        <a class="dropdown-item" href="#" id="email">Email: </a>
+                        <a class="btn btn-success" href="/EventManagement/logout" style="width:100%; margin-top: 5%;">Logout</a>
+                       
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bootstrap JS (optional, for dropdowns, toggles, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        const userData = {
+            name: "[[${uname}]]",
+            phone: "[[${uphone}]]",
+            email: "[[${umail}]]"
+        };
+
+        // Populate dropdown with backend data
+        document.getElementById('name').innerText += userData.name;
+        document.getElementById('phone').innerText += userData.phone;
+        document.getElementById('email').innerText += userData.email;
+    </script>
+    <!-- ends secondary navbar -->
+    
+    
+    
+   
+		<div class="container mt-5" style="background-color: rgba(0, 0, 0, 0.7); border-radius: 10px; ">
+        <!-- Delete Event Form Section -->
+        <form th:action="@{/Events/adminDeleteEvents}" method="post">
+            <fieldset class="fieldset">
+                <legend>Delete Event</legend>
+
+                <!-- Instruction Text -->
+                <h1 class="text-center mb-4">Enter the Event Category to Delete</h1>
+
+                <!-- Event Category Input -->
+                <div class="form-group position-relative">
+                    <input  style="background-color: #131f34; color:#8b6508;"type="text" class="form-control" name="eventCategory" placeholder="Event Category" required>
+                    <i class="fa fa-tags position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions text-center">
+                    <button type="submit" class="btn btn-danger">Delete Event</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+		
+ <br>
+ <br>
+     <!-- FOOTER STARTS HERE-->
+      
+     <section id="footer" class="float-start">
+    <footer class="ng text-white pt-5 pb-4" style="background-color: #131f34;">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-start">
+
+                <!-- Company Info -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Elite Iris</h5>
+                    <p>
+                        Expertly managing events with precision, creativity, and a seamless experience from concept to execution.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Products</h5>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">TheProviders</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Creativity</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-decoration-none" id="footer-hover">SourceFiles</a>
+                    </p>
+                    
+                </div>
+
+                <!-- Useful links -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Useful Links</h5>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Become an Affiliate</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Help</a>
+                    </p>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Contact</h5>
+                    <p>
+                        <i class="fas fa-home me-3"></i> Vijaynagar, Bangalore
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i> eliteiris@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone me-3"></i> + 01 234 567 88
+                    </p>
+                    <p>
+                        <i class="fas fa-print me-3"></i> + 01 234 567 89
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="my-3">
+
+            <!-- Social Media -->
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p>© 2024 Copyright:
+                        <a href="#" class="text-white text-decoration-none">
+                            <strong>EliteIris.com</strong>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-center text-md-end">
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    </section>
+</body>
+ 

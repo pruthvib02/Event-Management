@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Users..Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+</head>
+
+<body th:style="'background-image: url(' + @{/assets/images/backgroun-login.jpeg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;'">
+    <header id="menu-jk">
+
+        <div id="nav-head" class="header-nav" style="background-color: #131f34 ;">
+           <div class="row">
+         
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3  col-sm-12"
+                         style="color: #8b6508;font-weight:bold; font-size:42px; margin-top: 1% !important;"><img th:src="@{/assets/images/logo1.jpeg}" alt="Avatar Logo" style="width: 160px; height: 80px;  "
+					></div>
+                    <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                        <ul>
+                            <li>
+                                <h2> Only
+                                    <!-- <img src="slogo.jpg" alt="User Image" style="width: 20px; height: 20px; margin-right: 5px;"> -->
+                                    <span style="color: #00ab9f;">&#160; Admin &#160;</span>can access and Update this..
+                                </h2>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-sm-2 d-none d-lg-block appoint">
+
+                        <a class="btn btn-success" href="/EventManagement/logout">Logout</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    <section class="options">
+        <a href="users" class="book-button">Users</a>
+        <a href="allBookings" class="book-button">Bookings</a>
+    </section>
+    <section >
+        <center>
+            <br>
+           <H1  style="color: BLACK;"> [[${message}]]</H1>
+            <font color="#00ab9f" size="4">
+                <h1> Users </h1>
+            </font>
+            <h1 class="errmsg"> </h1>
+            
+            
+            
+
+            <div class="container  "  >
+            
+                <div class="jumbotron"  style="color: blue; background-color: rgba(0, 0, 0, 0.7);" >
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <br>
+                                
+                                <!-- <th>Slno</th> -->
+                                <th style="background-color: #131f34; color:#8b6508;">Name</th>
+                                <th style="background-color: #131f34; color:#8b6508;"> Email</th>
+                                <th style="background-color: #131f34; color:#8b6508;">Phone</th>
+
+                                <th style="background-color: #131f34; color:#8b6508;">Delete</th>
+                            </tr>
+                            <tr th:each="ob:${list}">
+                              
+                                <!-- <td>[[${ob.userId}]]</td> -->
+                                <td  style="color: #8b6508;">[[${ob.userName}]]</td>
+                                <td style="color: #8b6508;"> [[${ob.userEmail}]]</td>
+                                <td style="color: #8b6508;">[[${ob.userPhone}]]</td>
+                                <td style="color: #8b6508;"><a class="btn btn-danger" th:href="@{delete(id=${ob.userId})}">DELETE</a></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </center>
+
+        <script>
+            $(document).ready(function () {
+                $("#search").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    //alert(value);
+                    $("#table tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > 0)
+                        //alert(this);
+                    });
+                });
+            });
+        </script>
+    </section>
+    <section id="footer" class="float-start">
+    <footer class="ng text-white pt-5 pb-4" style="background-color: #131f34;">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-start">
+
+                <!-- Company Info -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Elite Iris</h5>
+                    <p>
+                        Expertly managing events with precision, creativity, and a seamless experience from concept to execution.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Products</h5>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">TheProviders</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Creativity</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-decoration-none" id="footer-hover">SourceFiles</a>
+                    </p>
+                    
+                </div>
+
+                <!-- Useful links -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Useful Links</h5>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Become an Affiliate</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Help</a>
+                    </p>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Contact</h5>
+                    <p>
+                        <i class="fas fa-home me-3"></i> Vijaynagar, Bangalore
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i> eliteiris@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone me-3"></i> + 01 234 567 88
+                    </p>
+                    <p>
+                        <i class="fas fa-print me-3"></i> + 01 234 567 89
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="my-3">
+
+            <!-- Social Media -->
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p>© 2024 Copyright:
+                        <a href="#" class="text-white text-decoration-none">
+                            <strong>EliteIris.com</strong>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-center text-md-end">
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    </section>
+</body>
+<style>
+    .options {
+
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .book-button {
+        display: block;
+        width: 100px;
+        padding: 7px;
+        background-color: #00ab9f;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .book-button:hover {
+        background-color: #4fe8dd;
+    }
+</style>
+
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <title>Home page</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+</head>
+
+<body  th:style="'background-image: url(' + @{/assets/images/backgroun-login.jpeg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;'">
+
+
+    <header id="menu-jk">
+
+        <div id="nav-head" class="header-nav" style="background-color: #131f34 ; margin-top:0px;" >
+                    
+                <div class="row">
+                 
+        
+        <img th:src="@{/assets/images/logo1.jpeg}" alt="Avatar Logo" style="width: 160px; height: 80px;  padding-left:10px; ">
+            <div class="container">
+            
+                <div class="row">
+                 
+					
+                 
+                    <div id="menu" class="col-lg-8  d-none d-md-block nav-item">
+                        <ul>
+                            <li><a href="#" onMouseOver="this.style.color = '#00ab9f'"
+                                    onMouseOut="this.style.color = 'black'"></a>
+                                <h2> Welcome
+                                    <span style="color: #00ab9f;">[[${uname}]] </span> select and book your Event
+                                </h2>
+                                
+                            </li>
+
+                  
+                        </ul>
+
+                  
+
+                        
+                    </div>
+                          
+
+                </div>
+</div>
+            </div>
+            
+        </div>
+    </header>
+    <h3 class="text-center text-white m-2">[[${message}]]</h3>
+    <!-- <jsp:include page="SecondaryNavbar.jsp" />   -->
+    <!-- Seconary navabr starts here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  >
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- <center>[[${message}]] </center> -->
+            <ul class="navbar-nav ml-auto"  style="background-color: orange;">
+                <li class="nav-item">
+                    <a class="nav-link" href="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Events/booking">Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">/</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+                        style="border-radius: 20px">
+                        <a class="dropdown-item" href="#" id="name">Name:  [[${uname}]] </a>
+                        <a class="dropdown-item" href="#" id="phone">Phone: [[${uphone}]] </a>
+                        <a class="dropdown-item" href="#" id="email">Email: [[${umail}]]</a>
+                        <a class="btn btn-success" href="/EventManagement/logout" style="width:90%; margin-top: 5%;">Logout</a>
+                       
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bootstrap JS (optional, for dropdowns, toggles, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        /* const userData = {
+            name: "[[${uname}]]",
+            phone: "[[${uphone}]]",
+            email: "[[${umail}]]"
+        };
+
+        // Populate dropdown with backend data
+        document.getElementById('name').innerText += userData.name;
+        document.getElementById('phone').innerText += userData.phone;
+        document.getElementById('email').innerText += userData.email; */
+    </script>
+    <!-- ends secondary navbar -->
+   
+		
+ 
+
+	
+	<!-- Card Start -->
+
+
+
+	
+	<!-- Card Start -->
+	<section class="hiddenL">
+		<div class="container-fluid">
+			<div class="card float-start my-2 ">
+				<div class="row ">
+					<div class="col-md-5 card-backcolor">
+						<img class="d-block"  th:src="@{/assets/images/traditional wedding.jpg}" alt="">
+					</div>
+					<div class="col-md-7 px-3 card-backcolor">
+						<div class="card-block px-6 ">
+						<h1 class="card-head-color">Wedding Events</h1>
+							<p class="card-text color-card">Marriage is a timeless celebration of love and commitment, marking 
+							the union of two individuals in a joyous and meaningful ceremony. At our event management company, 
+							we specialize in creating unforgettable wedding experiences tailored to your vision. From intimate 
+							gatherings to grand celebrations, we handle every detail with care, ensuring a seamless blend of 
+							elegance and personal touch.</p>
+							<br><a th:href="@{/Events/BookingPage(eventCategory='Wedding')}" class="custom-button">
+						<b>Book Wedding Events</b></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+		
+<section class="hiddenR">
+		<div class="container-fluid">
+			<div class="card  float-end float-box my-2 cardr">
+				<div class="row ">
+					<div class="col-md-7 px-3">
+						<div class="card-block px-6">
+						<h1 class="card-head-color">Corporate Events</h1>
+							<p class="card-text">Host seamless and professional corporate events 
+	tailored to your 
+							business needs. From conferences and product launches to team-building activities and 
+							business meetings, we provide full-service planning and execution to make your corporate 
+							event a success.</p>
+							<br><a th:href="@{/Events/BookingPage(eventCategory='Corporate')}" class="custom-button">
+						<b>Corporate Events</b></a>
+							</div>
+					</div>
+					<div class="col-md-5">
+					<img class="d-block"  th:src="@{/assets/images/card3.jpeg}" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="hiddenL">
+		<div class="container-fluid">
+			<div class="card float-start my-2">
+				<div class="row ">
+					<div class="col-md-5 card-backcolor">
+						<img class="d-block"  th:src= "@{/assets/images/card6.jpg}" alt="">
+					</div>
+					<div class="col-md-7 px-3 card-backcolor">
+						<div class="card-block px-6 ">
+						<h1 class="card-head-color">Sports & Fitness Events</h1>
+							<p class="card-text color-card">Discover exciting sports and fitness events, from tournaments and marathons to yoga retreats and fitness challenges. Stay active and compete or join for fun in a variety of engaging activities designed for all skill levels.</p><br>
+							<a th:href="@{/Events/BookingPage(eventCategory='Sports')}" class="custom-button">
+						<b>Sports Events</b></a>
+	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="hiddenR">
+		<div class="container-fluid">
+			<div class="card  float-end float-box my-2 cardr">
+				<div class="row ">
+					<div class="col-md-7 px-3">
+						<div class="card-block px-6">
+						<h1 class="card-head-color">Entertainment Events</h1>
+							<p class="card-text">Bring your event to life with unforgettable entertainment experiences. From live music and theater performances to award ceremonies and movie screenings, we offer tailored event management services that ensure every moment is full of excitement and fun. Let us handle the details while you enjoy the show!</p>
+							<br><a th:href="@{/Events/BookingPage(eventCategory='Entertainment')}" class="custom-button">
+						<b>Entertainment Events</b></a>
+	</div>
+					</div>
+					<div class="col-md-5">
+			<img class="d-block"  th:src="@{/assets/images/card6.jpg}" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="hiddenL">
+		<div class="container-fluid">
+			<div class="card float-start my-2">
+				<div class="row ">
+					<div class="col-md-5 card-backcolor">
+						<img class="d-block"  th:src= "@{/assets/images/card6.jpg}" alt="">
+					</div>
+					<div class="col-md-7 px-3 card-backcolor">
+						<div class="card-block px-6 ">
+						<h1 class="card-head-color">Birthday  Events</h1>
+							<p class="card-text color-card">Engage audiences from anywhere with seamless virtual and hybrid event experiences. Whether it's a webinar, virtual conference, or live-streamed concert, bring your events to life with cutting-edge technology and interactive solutions.</p><br>
+							<a th:href="@{/Events/BookingPage(eventCategory='Birthday')}" class="custom-button">
+						<b>Birthday  Events</b></a>
+	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+
+            <!-- FOOTER STARTS HERE-->
+      
+     <section id="footer" class="float-start">
+    <footer class="ng text-white pt-5 pb-4" style="background-color: #131f34;">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-start">
+
+                <!-- Company Info -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Elite Iris</h5>
+                    <p>
+                        Expertly managing events with precision, creativity, and a seamless experience from concept to execution.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Products</h5>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">TheProviders</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Creativity</a>
+                    </p>
+                    <p>
+                        <a href="#" class="text-decoration-none" id="footer-hover">SourceFiles</a>
+                    </p>
+                    
+                </div>
+
+                <!-- Useful links -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Useful Links</h5>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Become an Affiliate</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a href="#" class=" text-decoration-none" id="footer-hover">Help</a>
+                    </p>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold" style="color: #8b6508;">Contact</h5>
+                    <p>
+                        <i class="fas fa-home me-3"></i> Vijaynagar, Bangalore
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i> eliteiris@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone me-3"></i> + 01 234 567 88
+                    </p>
+                    <p>
+                        <i class="fas fa-print me-3"></i> + 01 234 567 89
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="my-3">
+
+            <!-- Social Media -->
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p>© 2024 Copyright:
+                        <a href="#" class="text-white text-decoration-none">
+                            <strong>EliteIris.com</strong>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-center text-md-end">
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-warning btn-floating m-1 text-white" role="button">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    </section>
+</body>
+
+<style>
+body{
+	background-image:url("backgroun-login.jpeg");
+	background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center;
+    background-attachment: fixed;
+}
+#img-caption {
+	background-image: rgba(0, 0, 0, 0.6);
+	z-index: 1;
+}
+
+.card {
+	animation: leftSlide linear;
+	animation-timeline: view();
+	animation-range: entry 0 cover 25%;
+	
+}
+
+.cardr {
+	animation: rightSlide linear;
+	animation-timeline: view();
+	animation-range: entry 0 cover 25%;
+}
+
+@keyframes leftSlide {
+	from { 
+		opacity:0.8;
+		transform: translateX(300px)
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0)
+	}
+
+}
+@keyframes rightSlide {
+from { 
+	opacity: 0;
+	transform: translateX(-300px);
+}
+
+to {
+	
+	opacity: 1;
+	transform: translateX(0);
+}
+
+}
+.card-block {
+	font-size: 1em;
+	position: relative;
+	margin: 0;
+	padding: 1em;
+	border: none;
+	border-top: 1px solid rgba(34, 36, 38, .1);
+	box-shadow: none;
+}
+
+.card img {
+	width: 100%;
+	height: 100%;
+}
+
+.card {
+	font-size: 1em;
+	overflow: hidden;
+	padding: 5;
+	border: none;
+	box-shadow: 0 1px 3px 0 #d4d ;
+	border-radius: 0.28571429rem; 
+	width: 85%;
+	height: fixed;
+	margin-top: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s ease, transform 0.3s ease;
+	cursor: pointer;
+}
+.right-card{
+margin-right: none;
+}
+
+.card:hover {
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+	transform: translateY(-5px);
+}
+
+.btn {
+	margin-top: auto;
+	bac:#131f34;
+}
+
+.card-head-color{
+color:#8b6508;
+ font-family: 'Flamenco', sans-serif;
+}
+
+
+.custom-button {
+    background-color: #131f34; /* Background color */
+    color: #8b6508; /* Text color */
+    border: 2px solid #ffffff; /* Border color */
+    padding: 10px 20px; /* Padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, border-color 0.3s; 
+    width:100%;/* Smooth transition */
+}
+
+.custom-button:hover {
+    background-color: #8b6508; /* Darker background color on hover */
+    border-color: #131f34;
+    color: #131f34; /* Darker border color on hover */
+}
+
+
+</style>
+
+</html>

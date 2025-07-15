@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Bookings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+
+</head>
+
+<body th:style="'background-image: url(' + @{/assets/images/backgroun-login.jpeg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;'">
+
+    <header id="menu-jk">
+
+        <div id="nav-head" class="header-nav" style="background-color: #131f34 ;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3  col-sm-12"
+                         style="color: #8b6508;font-weight:bold; font-size:42px; margin-top: 1% !important;">Happy</div>
+                    <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                        <ul>
+                            <li>
+                                <h2> Only
+
+                                    <!-- <img src="slogo.jpg" alt="User Image" style="width: 20px; height: 20px; margin-right: 5px;"> -->
+                                    <span style="color: #00ab9f;">&#160;[[${uname}]]</span> can access and cancel
+                                    Events...
+                                </h2>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="col-sm-2 d-none d-lg-block appoint">
+
+                        <a class="btn btn-success" href="/EventManagement/logout">Logout</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    </head>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav ml-auto" style="background-color: orange;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/EventManagement/Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="booking">Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">/</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+                        style="border-radius: 20px">
+                        <a class="dropdown-item" href="#" id="name">Name: </a>
+                        <a class="dropdown-item" href="#" id="phone">Phone: </a>
+                        <a class="dropdown-item" href="#" id="email">Email: </a>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        const userData = {
+            name: "[[${uname}]]",
+            phone: "[[${uphone}]]",
+            email: "[[${umail}]]"
+        };
+
+        // Populate dropdown with backend data
+        document.getElementById('name').innerText += userData.name;
+        document.getElementById('phone').innerText += userData.phone;
+        document.getElementById('email').innerText += userData.email;
+    </script>
+
+    <section>
+        <center>
+            <br>
+            <font color="#00ab9f">
+                <h1> Bookings by [[${uname}]] </h1>
+            </font>
+
+            <h3 class="errmsg">[[${message}]]</h3>
+
+            <div class="container ">
+                <div class="jumbotron"  style="color: blue; background-color: rgba(0, 0, 0, 0.7);">
+
+                    <table class="table">
+                        <thead>
+                            <tr style="background-color: lightblue;">
+                                <br>
+                                <th style="background-color: #131f34; color:#8b6508;">Id</th>
+                                <th style="background-color: #131f34; color:#8b6508;">Event</th>
+                                <th style="background-color: #131f34; color:#8b6508;">Atendees</th>
+                                <th style="background-color: #131f34; color:#8b6508;">Date</th>
+                                <th style="background-color: #131f34; color:#8b6508;">Time</th>
+                                
+                                <th style="background-color: #131f34; color:#8b6508;">Status</th>
+                                <th style="background-color: #131f34; color:#8b6508;"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="table">
+                            <tr th:each="ob:${list}">
+                                
+                                <td style="color: #8b6508;">[[${ob.id}]]</td>
+                                <td style="color: #8b6508;">[[${ob.eventName}]]</td>
+                                <td style="color: #8b6508;">[[${ob.attendees}]]</td>
+                                <td style="color: #8b6508;">[[${ob.date}]]</td>
+                                <td style="color: #8b6508;">[[${ob.time}]]</td>
+                                
+                                
+                                
+                                
+                                <div th:switch="${ob.status}">
+    								<td th:case="'pending'"style="color: #8b6508;">[[${ob.status}]]</td>
+    								<td th:case="'accepted'" style="color: green;">Accepted</td>
+    								<td th:case="'assigned'" style="color: white;">Assigned</td>
+    								<td th:case="'completed'" style="color: blue;">Completed</td>
+    								
+								</div>
+                            
+                            
+                            <div th:switch="${ob.status}">
+    								<td th:case="'pending'"style="color: #8b6508;"> 
+                                    	<a class="btn btn-danger ml-4" th:href="@{deleteUserBooking(id=${ob.id})}">Cancel</a>
+                                 	</td>
+    								<td th:case="'accepted'" style="color: green;"><a class="btn "style="">Assigning Attender's</a></td>
+    								<td th:case="'assigned'" style="color: red;"><a class="btn ml-3"style="background-color: green;color: white;" th:href="@{VeiwAttender(id=${ob.id})}">Veiw Attender's</a></td>
+    								<td th:case="'completed'" style="color: blue;"><a class="btn ml-3"> Completed</a></td>
+    								
+							</div>
+                                
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </center>
+
+        <script>
+            $(document).ready(function () {
+                $("#search").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    //alert(value);
+                    $("#table tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > 0)
+                        //alert(this);
+                    });
+                });
+            });
+        </script>
+    </section>
+
+
+</body>
+
+</html>
